@@ -1,0 +1,91 @@
+﻿@model  PagedList.IPagedList<Model.EF.Product>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "Sản Phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    Danh Sách Sản Phẩm
+}
+@section jsFooter{
+    <script src="~/assets/admin/js/controller/productControllerjs.js"></script>
+}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Index", "Product", FormMethod.Get))
+        {
+            <div class="row ">
+                <div class="card shadow mb-4" class="card-header py-2">
+                    <div class="col-lg-12">
+                        <div class="input-group" class="row form-control bg-light border-0 d-lg-block">
+                            <input type="text" value="@ViewBag.SearchString" name="searchString" class="form-control" />
+                            <div class="mb-md-1 ">
+                                <button type="submit" class="btn btn-info ">Tìm Kiếm</button>
+                                <a class="btn btn-primary" href="/Admin/Product/Create">Thêm Mới</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+        <div class="table-primary">
+
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Tên</th>
+                        <th>Tiêu Đề</th>
+                        <th>Hình Ảnh</th>
+                        <th>Nội Dung</th>
+                        <th>Gía</th>
+                        <th>Tình Trạng</th>
+                        <th>Chức Năng</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.ID">
+                            <td>@item.Name</td>
+                            <td>@item.MetaTitle </td>
+                            <td><img src="@item.Image" height="100px" width="150px"/></td>
+                            <td>@item.Detail</td>
+                            <td>@item.Price</td>
+                            <th><a href="#" class="btn-active" data-id="@item.ID">@(item.Status ? "Kích Hoạt" : "Khóa")</a></th>
+                            <td>
+                                <a href="/Admin/Product/Edit/@item.ID">Sửa</a>
+                                |
+
+                                @Ajax.ActionLink("Xóa", "Delete", new { @id = @item.ID }, new AjaxOptions
+                           {
+                               Confirm = "Bạn có muốn xóa không?",
+                               OnComplete = "$('#row_" + @item.ID + "').remove()",
+                               HttpMethod = "Delete"
+                           })
+
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @seacrhString = @ViewBag.SearchString }))
+    </div>
+</div>
+
+        </div>
+<!-- /.container-fluid -->
+    </div>
+    </div>
+    </div>
+

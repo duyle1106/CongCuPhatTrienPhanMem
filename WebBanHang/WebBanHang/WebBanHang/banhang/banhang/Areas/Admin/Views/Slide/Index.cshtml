@@ -1,0 +1,84 @@
+﻿@model  PagedList.IPagedList<Model.EF.Slide>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "Slide";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+   Slide
+}
+@section jsFooter{
+    <script src="~/assets/admin/js/controller/SlideController.js"></script>
+}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Index", "Slide", FormMethod.Get))
+        {
+            <div class="row ">
+                <div class="card shadow mb-4" class="card-header py-2">
+                    <div class="col-lg-12">
+                        <div class="input-group" class="row form-control bg-light border-0 d-lg-block">
+                            <input type="text" value="@ViewBag.SearchString" name="searchString" class="form-control" />
+                            <div class="mb-md-1 ">
+                                <button type="submit" class="btn btn-info ">Tìm Kiếm</button>
+                                <a class="btn btn-primary" href="/Admin/Slide/Create">Thêm Mới</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+        <div class="table-primary">
+
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Link</th>
+                        <th>Hình ảnh</th>
+                        <th>Status</th>
+                        <th>Chức Năng</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.ID">
+                            <td>@item.Link</td>
+                            <td><img src="@item.Image" height="150px" width="250px"/></td>
+                            <th><a href="#" class="btn-active" data-id="@item.ID">@(item.Status ? "Kích Hoạt" : "Khóa")</a></th>
+                            <td>
+                                <a href="/Admin/Slide/Edit/@item.ID">Sửa</a>
+                                |
+
+                                @Ajax.ActionLink("Xóa", "Delete", new { @id = @item.ID }, new AjaxOptions
+                           {
+                               Confirm = "Bạn có muốn xóa không?",
+                               OnComplete = "$('#row_" + @item.ID + "').remove()",
+                               HttpMethod = "Delete"
+                           })
+
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @seacrhString = @ViewBag.SearchString }))
+    </div>
+</div>
+
+        </div>
+<!-- /.container-fluid -->
+    </div>
+    </div>
+    </div>

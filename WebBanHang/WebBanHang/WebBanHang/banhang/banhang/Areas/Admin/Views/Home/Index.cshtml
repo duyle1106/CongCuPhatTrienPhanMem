@@ -1,0 +1,36 @@
+﻿@model List<Model.EF.Menu>
+@{
+    ViewBag.Title = "Trang Chủ";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    Trang Chủ
+    }
+
+<div class="account_desc">
+    @{ 
+        var session = (UserLogin) Session[banhang.Common.CommonConstants.USER_SESSION];
+    }
+    @if (session == null)
+    {
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li><a href="@item.Link" target="@item.Target">@item.Text</a></li>
+            }
+            <div class="clear">
+
+            </div>
+        </ul>
+    }
+    else
+    {
+        <ul>
+            <li>Xin chào:@session.UserName</li>
+            
+        </ul>
+
+    }
+
+</div>

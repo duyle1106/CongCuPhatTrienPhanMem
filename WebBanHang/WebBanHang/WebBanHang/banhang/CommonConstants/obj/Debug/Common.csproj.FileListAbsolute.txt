@@ -1,0 +1,9 @@
+D:\WebBanHang\WebBanHang\banhang\CommonConstants\bin\Debug\CommonConstants.dll
+D:\WebBanHang\WebBanHang\banhang\CommonConstants\bin\Debug\CommonConstants.pdb
+D:\WebBanHang\WebBanHang\banhang\CommonConstants\obj\Debug\CommonConstants.dll
+D:\WebBanHang\WebBanHang\banhang\CommonConstants\obj\Debug\CommonConstants.pdb
+D:\WebBanHang\WebBanHang\WebBanHang\banhang\CommonConstants\bin\Debug\CommonConstants.dll
+D:\WebBanHang\WebBanHang\WebBanHang\banhang\CommonConstants\bin\Debug\CommonConstants.pdb
+D:\WebBanHang\WebBanHang\WebBanHang\banhang\CommonConstants\obj\Debug\CommonConstants.dll
+D:\WebBanHang\WebBanHang\WebBanHang\banhang\CommonConstants\obj\Debug\CommonConstants.pdb
+D:\WebBanHang\WebBanHang\WebBanHang\banhang\CommonConstants\obj\Debug\Common.csprojResolveAssemblyReference.cache
