@@ -19,6 +19,8 @@ namespace banhang.Controllers
         {
             return View();
         }
+		
+		[HttpGet]
         public ActionResult Logout()
         {
             Session[Common.CommonConstants.USER_SESSION] = null;            
