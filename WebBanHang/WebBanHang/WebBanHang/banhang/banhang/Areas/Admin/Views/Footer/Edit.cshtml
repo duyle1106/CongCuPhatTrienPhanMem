@@ -1,0 +1,53 @@
+﻿@model Model.EF.Footer
+
+@{
+    ViewBag.Title = "Cập Nhật Footer";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@section header{
+    Cập Nhật Footer
+}
+
+@using (Html.BeginForm("Edit", "Footer", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            @Html.TextBoxFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            @Html.TextBoxFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+
+
+            @Html.CheckBoxFor(model => model.Status)
+            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Cập Nhật" class="btn btn-success" />
+            </div>
+        </div>
+}
+
+
